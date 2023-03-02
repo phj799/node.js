@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>API TEST</h1>
+  <button>서버의 데이터 가져오기!</button>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.3.4/dist/axios.min.js"></script>
+  <script>
+    // 왜 폴더를 따로 만들었느냐?
+    // frontend와 backend가 같은 영역에 있지 않은 경우 발생하는 오류를 확인하기위해!
+    // CORS(Cross-Origin Resource Sharing)를 찾아보세용~
+    // 2일차 폴더의 index.js에 
+    // const cors = require("cors");
+    // app.use(cors());
+    // 를 추가해주면 오류 해결~
+
+    const btn = document.querySelector("button");
+    btn.addEventListener("click", async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/api/info");
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  </script>
+</body>
+</html>
