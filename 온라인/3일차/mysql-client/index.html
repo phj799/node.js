@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <label for="menu_name">메뉴이름</label>
+      <input id="menu_name">
+    </div>
+
+    <div>
+      <label for="menu_description">메뉴설명</label>
+      <input id="menu_description">
+    </div>
+
+    <div>
+      <button>메뉴 등록</button>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.3.4/dist/axios.min.js"></script>
+    <script>
+      const button = document.querySelector("button");
+      button.addEventListener('click', async function(){
+        // input data -> value
+        // 그외 html -> textContent
+        const menu_name = document.querySelector("#menu_name").value;
+        const menu_description = document.querySelector("#menu_description").value;
+        // post 요청을 보낼것
+        // 데이터를 같이 보낼것 (백엔드에서는 현재 못받는상태)
+        // body에 데이터를 같이 보낸다
+        const result = await axios.post("http://localhost:8080/api/menus", {
+          menu_name:menu_name,
+          // key랑 value가 같으면 생략이 가능
+          menu_description
+        })
+      })
+
+      // GET TEST
+      // 프론트 라이브서버는 5500 포트
+      // 백엔드서버는 8080 포트
+      // cors가 발생하지 않으려면 도메인도같고 포트도같아야한다.
+      // 도메인 (localhost는 같지만) 현재 포트가 다르기때문에 cors 이슈가 난다.
+      // 그래서 백엔드 서버에 cors 셋팅을 해줘야한다.
+      // 원래라면 http header에 셋팅을 해줘야한다 하지만 cors 라이브러리로 편하게 사용
+      // async function getTest() {
+      //   const result = await axios.get("http://localhost:8080/api/menus");
+      //   console.log(result);
+      // }
+      // getTest();
+      // POST TEST
+    </script>
+  </body>
+</html>
